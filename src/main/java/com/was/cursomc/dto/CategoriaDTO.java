@@ -2,6 +2,8 @@ package com.was.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -38,5 +40,13 @@ public class CategoriaDTO implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public static Categoria toEntity(@Valid CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+
+	public Categoria toEntity() {
+		return new Categoria(this.getId(), this.getNome());	
 	}
 }
